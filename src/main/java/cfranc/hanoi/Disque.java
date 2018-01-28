@@ -7,7 +7,8 @@ public class Disque implements Comparable<Disque>{
         this.d = d;
     }
 
-	@Override
+    
+    @Override
 	public int compareTo(Disque obj) {
 		int res=0;
 		if (this.d<obj.d) {

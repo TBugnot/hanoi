@@ -7,7 +7,7 @@ public class Tour implements IPile<Disque>{
 
 	int hauteurMax = 3;
 	
-	Queue<Disque> disques=new ArrayDeque<>();
+	ArrayDeque<Disque> disques=new ArrayDeque<>();
 	
 	@Override
 	public boolean empiler(Disque d) {
@@ -19,7 +19,7 @@ public class Tour implements IPile<Disque>{
         else{
             if( (disques.element().d>d.d) && (taille()<hauteurMax) ){
                 res=true;
-                disques.offer(d);
+                disques.offerFirst(d);
             }
             else{
                 res=false;
@@ -73,6 +73,14 @@ public class Tour implements IPile<Disque>{
 			res = disqueSommet.d;
 		}
 		return res;
+	}
+	
+	public String toString(){
+		int s = 0;
+		if(!estVide()){
+			s = sommet().d;
+		}
+		return taille()+":"+s;
 	}
 
 }

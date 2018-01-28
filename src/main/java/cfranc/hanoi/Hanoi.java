@@ -7,7 +7,12 @@ public class Hanoi {
 	Tour tourDest;
 
 	public Hanoi(int n){
-		// TODO ...
+		tourInit = new Tour(n);
+		tourInter = new Tour(n);
+		tourDest = new Tour(n);
+		for(int i=0;i<n;i++){
+			tourInit.empiler(new Disque(n-i));
+		}
 	}
 
 	
@@ -24,15 +29,13 @@ public class Hanoi {
 	}
 	
 	public void bougerSommet(Tour from, Tour to) {
-		tourInit = new Tour();
-		tourInter = new Tour();
-		tourDest = new Tour();
-		// TODO ...
+		Disque disque = from.depiler();
+		to.empiler(disque);
 	}
 
 	public void deplacer(int nbDisque, Tour from, Tour to, Tour by){
 		if (nbDisque > 0) {
-			deplacer(nbDisque-1, from, to, by);
+			deplacer(nbDisque-1, from, by, to);
 			bougerSommet(from, to);
 			deplacer(nbDisque-1, by, to, from);
 		}
@@ -52,7 +55,7 @@ public class Hanoi {
 		System.out.println(game.tourDest.estVide());
 		
 		// Compléter la classe Hanoi pour résoudre le jeux avec n disques :
-		int n =100;
+		int n =25;
 		Hanoi gameN = new Hanoi(n);
 		System.out.println(gameN.tourInit.estVide());
 		System.out.println(gameN.tourDest.estVide());
